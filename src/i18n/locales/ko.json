@@ -15,6 +15,29 @@
   },
   "about": {
     "title": "소개",
-    "content": "이것은 Vue 3 + DaisyUI 프로젝트입니다."
+    "content": "이것은 Vue 3 + DaisyUI 프로젝트입니다.",
+    "techStack": "기술 스택"
+  },
+  "dashboard": {
+    "title": "기능 대시보드"
+  },
+  "test": {
+    "components": {
+      "title": "컴포넌트 테스트"
+    },
+    "api": {
+      "title": "MSW API 테스트",
+      "fetchUsers": "사용자 목록 가져오기",
+      "createUser": "새 사용자 생성",
+      "clearUsers": "목록 초기화",
+      "userList": "사용자 목록"
+    },
+    "theme": {
+      "title": "테마 & 다국어 테스트"
+    },
+    "i18n": {
+      "currentLang": "현재 언어",
+      "welcomeMessage": "다국어 기능이 정상 작동하고 있습니다!"
+    }
   }
 }

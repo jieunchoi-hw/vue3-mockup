@@ -15,6 +15,29 @@
   },
   "about": {
     "title": "About",
-    "content": "This is Vue 3 + DaisyUI project."
+    "content": "This is Vue 3 + DaisyUI project.",
+    "techStack": "Tech Stack"
+  },
+  "dashboard": {
+    "title": "Feature Dashboard"
+  },
+  "test": {
+    "components": {
+      "title": "Component Test"
+    },
+    "api": {
+      "title": "MSW API Test",
+      "fetchUsers": "Fetch Users",
+      "createUser": "Create User",
+      "clearUsers": "Clear List",
+      "userList": "User List"
+    },
+    "theme": {
+      "title": "Theme & i18n Test"
+    },
+    "i18n": {
+      "currentLang": "Current Language",
+      "welcomeMessage": "Internationalization is working properly!"
+    }
   }
 }
