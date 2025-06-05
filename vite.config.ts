@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/vue3-enterprise-boilerplate/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/vue3-mockup/' : '/',
   plugins: [vue()],
   resolve: {
     alias: {
@@ -12,11 +12,5 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
-    sourcemap: false,
-  },
-  test: {
-    globals: true,
-    environment: 'jsdom',
   },
 })

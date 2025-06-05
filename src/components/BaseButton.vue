@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 interface Props {
-  variant?: 'primary' | 'secondary' | 'accent' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'outline'
   size?: 'xs' | 'sm' | 'md' | 'lg'
   disabled?: boolean
   loading?: boolean
@@ -17,12 +16,16 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
-
+import { computed } from 'vue'
 const buttonClasses = computed(() => {
   const classes = ['btn']
 
-  // Variant
-  classes.push(`btn-${props.variant}`)
+  // Variant 처리
+  if (props.variant === 'outline') {
+    classes.push('btn-outline')
+  } else {
+    classes.push(`btn-${props.variant}`)
+  }
 
   // Size
   if (props.size !== 'md') {
