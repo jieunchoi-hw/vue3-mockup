@@ -1,39 +1,34 @@
-# vue3-mockup
+# 🚀 Vue 3 Enterprise Boilerplate
 
-This template should help get you started developing with Vue 3 in Vite.
+![Deploy Status](https://github.com/yourusername/vue3-enterprise-boilerplate/workflows/🚀%20Deploy%20to%20GitHub%20Pages/badge.svg)
 
-## Recommended IDE Setup
+## 🌐 Live Demo
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **메인 앱**: https://yourusername.github.io/vue3-enterprise-boilerplate/
+- **Storybook**: https://yourusername.github.io/vue3-enterprise-boilerplate/storybook/
 
-## Type Support for `.vue` Imports in TS
+## ✨ Features
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- 🎨 **Tailwind CSS + DaisyUI** - 유틸리티 기반 스타일링
+- 🌍 **Vue I18n** - 다국어 지원 (한국어/영어)
+- 🔧 **MSW** - API 모킹으로 개발 효율성 향상
+- 📚 **Storybook** - 컴포넌트 문서화 및 시각화
+- 🚀 **GitHub Actions** - 자동 빌드 및 배포
+- ⚡ **Vite** - 빠른 개발 환경
+- 🟦 **TypeScript** - 타입 안전성
 
-## Customize configuration
+## 🛠️ Development
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
+```bash
+# 개발 서버 시작
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
+# Storybook 실행
+npm run storybook
 
-```sh
+# 빌드
 npm run build
-```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+# 배포
+npm run deploy
 ```

@@ -3,7 +3,7 @@
     <!-- 헤더 네비게이션 -->
     <header class="navbar bg-base-200 shadow-lg">
       <div class="navbar-start">
-        <h1 class="text-xl font-bold">🚀 Vue3 Enterprise Demo</h1>
+        <h1 class="text-xl font-bold">🚀 Vue3 Demo</h1>
       </div>
 
       <div class="navbar-end space-x-2">
