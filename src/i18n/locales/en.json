@@ -1,43 +1,137 @@
 {
+  "header": {
+    "title": "Vue3 Demo"
+  },
+
+  "dashboard": {
+    "title": "Feature Status Dashboard",
+    "stats": {
+      "styling": {
+        "title": "Tailwind + DaisyUI",
+        "desc": "Styling Active"
+      },
+      "i18n": {
+        "title": "Vue I18n"
+      },
+      "api": {
+        "title": "MSW API",
+        "desc": "User Data"
+      },
+      "storybook": {
+        "title": "Storybook",
+        "status": "ON",
+        "desc": "Component Documentation"
+      }
+    }
+  },
+
+  "test": {
+    "components": {
+      "title": "Component Test",
+      "description": "Testing DaisyUI components and our custom BaseButton",
+      "baseButton": {
+        "title": "BaseButton Component",
+        "variants": {
+          "primary": "Primary",
+          "secondary": "Secondary",
+          "accent": "Accent",
+          "ghost": "Ghost"
+        },
+        "sizes": {
+          "xs": "Extra Small",
+          "sm": "Small",
+          "md": "Medium",
+          "lg": "Large"
+        },
+        "states": {
+          "loading": "Loading...",
+          "testLoading": "Test Loading",
+          "disabled": "Disabled"
+        },
+        "loadingComplete": "Button loading test completed!"
+      },
+      "daisyui": {
+        "title": "DaisyUI Native Components",
+        "alert": "Info Alert - DaisyUI Component",
+        "inputPlaceholder": "Type here...",
+        "inputValue": "Input value"
+      }
+    },
+
+    "api": {
+      "title": "MSW API Test",
+      "description": "Testing API requests with Mock Service Worker",
+      "fetchUsers": "Fetch Users",
+      "createUser": "Create User",
+      "clearUsers": "Clear Users",
+      "userList": "User List",
+      "userCount": " users",
+      "viewDetail": "View Detail",
+      "roles": {
+        "admin": "Admin",
+        "user": "User"
+      },
+      "messages": {
+        "fetchSuccess": "✅ Successfully loaded {count} user data!",
+        "fetchError": "❌ Failed to load user list.",
+        "createSuccess": "✅ Created new user \"{name}\"!",
+        "createError": "❌ Failed to create user.",
+        "clearSuccess": "🗑️ User list has been cleared."
+      },
+      "userDetail": "👤 User Details\\n\\nName: {name}\\nEmail: {email}\\nRole: {role}\\nJoined: {createdAt}"
+    },
+
+    "theme": {
+      "title": "Theme & I18n Test",
+      "description": "Testing theme switching and internationalization features",
+      "themeChange": "Theme Change",
+      "currentTheme": "Current Theme",
+      "themes": {
+        "light": "Light",
+        "dark": "Dark"
+      },
+      "toDark": "🌙 To Dark Mode",
+      "toLight": "☀️ To Light Mode"
+    },
+
+    "i18n": {
+      "title": "Internationalization",
+      "currentLang": "Current Language",
+      "welcomeMessage": "Hello! Vue I18n is working properly."
+    }
+  },
+
+  "about": {
+    "techStack": "Tech Stack",
+    "stack": {
+      "vue": {
+        "title": "Vue 3",
+        "desc": "Composition API"
+      },
+      "tailwind": {
+        "title": "Tailwind CSS",
+        "desc": "+ DaisyUI"
+      },
+      "i18n": {
+        "title": "Vue I18n",
+        "desc": "Multi-language Support"
+      },
+      "msw": {
+        "title": "MSW",
+        "desc": "API Mocking"
+      }
+    }
+  },
+
+  "footer": {
+    "mainText": "Vue 3 Enterprise Boilerplate - All Features Tested!",
+    "storybook": "Storybook"
+  },
+
   "common": {
     "language": {
       "korean": "한국어",
       "english": "English"
-    },
-    "navigation": {
-      "home": "Home",
-      "about": "About"
-    }
-  },
-  "home": {
-    "title": "Home",
-    "welcome": "Welcome to Vue 3 Project!"
-  },
-  "about": {
-    "title": "About",
-    "content": "This is Vue 3 + DaisyUI project.",
-    "techStack": "Tech Stack"
-  },
-  "dashboard": {
-    "title": "Feature Dashboard"
-  },
-  "test": {
-    "components": {
-      "title": "Component Test"
-    },
-    "api": {
-      "title": "MSW API Test",
-      "fetchUsers": "Fetch Users",
-      "createUser": "Create User",
-      "clearUsers": "Clear List",
-      "userList": "User List"
-    },
-    "theme": {
-      "title": "Theme & i18n Test"
-    },
-    "i18n": {
-      "currentLang": "Current Language",
-      "welcomeMessage": "Internationalization is working properly!"
     }
   }
 }

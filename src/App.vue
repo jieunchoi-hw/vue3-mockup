@@ -3,7 +3,7 @@
     <!-- 헤더 네비게이션 -->
     <header class="navbar bg-base-200 shadow-lg">
       <div class="navbar-start">
-        <h1 class="text-xl font-bold">🚀 Vue3 Demo</h1>
+        <h1 class="text-xl font-bold">🚀 {{ t('header.title') }}</h1>
       </div>
 
       <div class="navbar-end space-x-2">
@@ -41,14 +41,14 @@
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
             <div class="stat bg-base-100 rounded-lg">
               <div class="stat-figure text-primary">🎨</div>
-              <div class="stat-title">Tailwind + DaisyUI</div>
+              <div class="stat-title">{{ t('dashboard.stats.styling.title') }}</div>
               <div class="stat-value text-primary">✅</div>
-              <div class="stat-desc">스타일링 작동중</div>
+              <div class="stat-desc">{{ t('dashboard.stats.styling.desc') }}</div>
             </div>
 
             <div class="stat bg-base-100 rounded-lg">
               <div class="stat-figure text-secondary">🌍</div>
-              <div class="stat-title">Vue I18n</div>
+              <div class="stat-title">{{ t('dashboard.stats.i18n.title') }}</div>
               <div class="stat-value text-secondary">{{ locale.toUpperCase() }}</div>
               <div class="stat-desc">
                 {{ t('common.language.korean') }} ↔ {{ t('common.language.english') }}
@@ -57,16 +57,16 @@
 
             <div class="stat bg-base-100 rounded-lg">
               <div class="stat-figure text-accent">🔧</div>
-              <div class="stat-title">MSW API</div>
+              <div class="stat-title">{{ t('dashboard.stats.api.title') }}</div>
               <div class="stat-value text-accent">{{ users.length }}</div>
-              <div class="stat-desc">사용자 데이터</div>
+              <div class="stat-desc">{{ t('dashboard.stats.api.desc') }}</div>
             </div>
 
             <div class="stat bg-base-100 rounded-lg">
               <div class="stat-figure text-info">📚</div>
-              <div class="stat-title">Storybook</div>
-              <div class="stat-value text-info">ON</div>
-              <div class="stat-desc">컴포넌트 문서화</div>
+              <div class="stat-title">{{ t('dashboard.stats.storybook.title') }}</div>
+              <div class="stat-value text-info">{{ t('dashboard.stats.storybook.status') }}</div>
+              <div class="stat-desc">{{ t('dashboard.stats.storybook.desc') }}</div>
             </div>
           </div>
         </div>
@@ -76,50 +76,68 @@
       <section class="card bg-base-200 shadow-xl">
         <div class="card-body">
           <h2 class="card-title">🧩 {{ t('test.components.title') }}</h2>
-          <p class="text-base-content/70">DaisyUI 컴포넌트들과 우리가 만든 BaseButton 테스트</p>
+          <p class="text-base-content/70">{{ t('test.components.description') }}</p>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
             <!-- BaseButton 테스트 -->
             <div class="space-y-4">
-              <h3 class="font-semibold">BaseButton 컴포넌트</h3>
+              <h3 class="font-semibold">{{ t('test.components.baseButton.title') }}</h3>
               <div class="flex flex-wrap gap-2">
-                <BaseButton variant="primary" @click="showAlert('Primary!')">Primary</BaseButton>
-                <BaseButton variant="secondary" @click="showAlert('Secondary!')"
-                  >Secondary</BaseButton
-                >
-                <BaseButton variant="accent" @click="showAlert('Accent!')">Accent</BaseButton>
-                <BaseButton variant="ghost" @click="showAlert('Ghost!')">Ghost</BaseButton>
+                <BaseButton variant="primary" @click="showAlert('Primary!')">{{
+                  t('test.components.baseButton.variants.primary')
+                }}</BaseButton>
+                <BaseButton variant="secondary" @click="showAlert('Secondary!')">{{
+                  t('test.components.baseButton.variants.secondary')
+                }}</BaseButton>
+                <BaseButton variant="accent" @click="showAlert('Accent!')">{{
+                  t('test.components.baseButton.variants.accent')
+                }}</BaseButton>
+                <BaseButton variant="ghost" @click="showAlert('Ghost!')">{{
+                  t('test.components.baseButton.variants.ghost')
+                }}</BaseButton>
               </div>
 
               <div class="flex flex-wrap gap-2">
-                <BaseButton size="xs">Extra Small</BaseButton>
-                <BaseButton size="sm">Small</BaseButton>
-                <BaseButton size="md">Medium</BaseButton>
-                <BaseButton size="lg">Large</BaseButton>
+                <BaseButton size="xs">{{ t('test.components.baseButton.sizes.xs') }}</BaseButton>
+                <BaseButton size="sm">{{ t('test.components.baseButton.sizes.sm') }}</BaseButton>
+                <BaseButton size="md">{{ t('test.components.baseButton.sizes.md') }}</BaseButton>
+                <BaseButton size="lg">{{ t('test.components.baseButton.sizes.lg') }}</BaseButton>
               </div>
 
               <div class="flex gap-2">
                 <BaseButton :loading="buttonLoading" @click="testButtonLoading">
-                  {{ buttonLoading ? 'Loading...' : 'Test Loading' }}
+                  {{
+                    buttonLoading
+                      ? t('test.components.baseButton.states.loading')
+                      : t('test.components.baseButton.states.testLoading')
+                  }}
                 </BaseButton>
-                <BaseButton disabled>Disabled</BaseButton>
+                <BaseButton disabled>{{
+                  t('test.components.baseButton.states.disabled')
+                }}</BaseButton>
               </div>
             </div>
 
             <!-- DaisyUI 네이티브 컴포넌트 -->
             <div class="space-y-4">
-              <h3 class="font-semibold">DaisyUI 네이티브 컴포넌트</h3>
+              <h3 class="font-semibold">{{ t('test.components.daisyui.title') }}</h3>
 
               <!-- 알림 -->
               <div class="alert alert-info">
-                <span>ℹ️ 정보 알림 - DaisyUI 컴포넌트</span>
+                <span>ℹ️ {{ t('test.components.daisyui.alert') }}</span>
               </div>
 
               <!-- 배지 -->
               <div class="flex gap-2">
-                <div class="badge badge-primary">Primary</div>
-                <div class="badge badge-secondary">Secondary</div>
-                <div class="badge badge-accent">Accent</div>
+                <div class="badge badge-primary">
+                  {{ t('test.components.baseButton.variants.primary') }}
+                </div>
+                <div class="badge badge-secondary">
+                  {{ t('test.components.baseButton.variants.secondary') }}
+                </div>
+                <div class="badge badge-accent">
+                  {{ t('test.components.baseButton.variants.accent') }}
+                </div>
               </div>
 
               <!-- 프로그레스 -->
@@ -128,11 +146,11 @@
               <!-- 입력 -->
               <input
                 type="text"
-                placeholder="Type here..."
+                :placeholder="t('test.components.daisyui.inputPlaceholder')"
                 class="input input-bordered w-full"
                 v-model="testInput"
               />
-              <p class="text-sm">입력한 값: {{ testInput }}</p>
+              <p class="text-sm">{{ t('test.components.daisyui.inputValue') }}: {{ testInput }}</p>
             </div>
           </div>
         </div>
@@ -142,7 +160,7 @@
       <section class="card bg-base-200 shadow-xl">
         <div class="card-body">
           <h2 class="card-title">🔧 {{ t('test.api.title') }}</h2>
-          <p class="text-base-content/70">Mock Service Worker로 API 요청 테스트</p>
+          <p class="text-base-content/70">{{ t('test.api.description') }}</p>
 
           <!-- API 컨트롤 -->
           <div class="flex flex-wrap gap-4 mt-4">
@@ -171,7 +189,7 @@
           <!-- 사용자 목록 -->
           <div v-if="users.length > 0" class="mt-6">
             <h3 class="font-semibold mb-4">
-              👥 {{ t('test.api.userList') }} ({{ users.length }}명)
+              👥 {{ t('test.api.userList') }} ({{ users.length }}{{ t('test.api.userCount') }})
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div
@@ -192,14 +210,14 @@
                           'badge-primary': user.role === 'user',
                         }"
                       >
-                        {{ user.role }}
+                        {{ t(`test.api.roles.${user.role}`) }}
                       </span>
                     </p>
                     <p class="text-sm">📅 {{ user.createdAt }}</p>
                   </div>
                   <div class="card-actions justify-end mt-4">
                     <BaseButton size="sm" variant="ghost" @click="showUserDetail(user)">
-                      상세보기
+                      {{ t('test.api.viewDetail') }}
                     </BaseButton>
                   </div>
                 </div>
@@ -213,25 +231,28 @@
       <section class="card bg-base-200 shadow-xl">
         <div class="card-body">
           <h2 class="card-title">🎨 {{ t('test.theme.title') }}</h2>
-          <p class="text-base-content/70">테마 변경과 다국어 기능 테스트</p>
+          <p class="text-base-content/70">{{ t('test.theme.description') }}</p>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
             <!-- 테마 테스트 -->
             <div>
-              <h3 class="font-semibold mb-4">🌙 테마 변경</h3>
+              <h3 class="font-semibold mb-4">🌙 {{ t('test.theme.themeChange') }}</h3>
               <div class="space-y-2">
                 <p>
-                  현재 테마: <span class="badge badge-primary">{{ currentTheme }}</span>
+                  {{ t('test.theme.currentTheme') }}:
+                  <span class="badge badge-primary">{{
+                    t(`test.theme.themes.${currentTheme}`)
+                  }}</span>
                 </p>
                 <BaseButton @click="toggleTheme" variant="outline">
-                  {{ currentTheme === 'light' ? '🌙 다크 모드로' : '☀️ 라이트 모드로' }}
+                  {{ currentTheme === 'light' ? t('test.theme.toDark') : t('test.theme.toLight') }}
                 </BaseButton>
               </div>
             </div>
 
             <!-- 다국어 테스트 -->
             <div>
-              <h3 class="font-semibold mb-4">🌍 다국어 기능</h3>
+              <h3 class="font-semibold mb-4">🌍 {{ t('test.i18n.title') }}</h3>
               <div class="space-y-2">
                 <p>
                   {{ t('test.i18n.currentLang') }}:
@@ -244,14 +265,14 @@
                     :variant="locale === 'ko' ? 'primary' : 'outline'"
                     @click="changeLanguage('ko')"
                   >
-                    한국어
+                    {{ t('common.language.korean') }}
                   </BaseButton>
                   <BaseButton
                     size="sm"
                     :variant="locale === 'en' ? 'primary' : 'outline'"
                     @click="changeLanguage('en')"
                   >
-                    English
+                    {{ t('common.language.english') }}
                   </BaseButton>
                 </div>
               </div>
@@ -267,23 +288,23 @@
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
             <div class="text-center">
               <div class="text-3xl mb-2">⚡</div>
-              <div class="font-semibold">Vue 3</div>
-              <div class="text-sm text-base-content/70">Composition API</div>
+              <div class="font-semibold">{{ t('about.stack.vue.title') }}</div>
+              <div class="text-sm text-base-content/70">{{ t('about.stack.vue.desc') }}</div>
             </div>
             <div class="text-center">
               <div class="text-3xl mb-2">🎨</div>
-              <div class="font-semibold">Tailwind CSS</div>
-              <div class="text-sm text-base-content/70">+ DaisyUI</div>
+              <div class="font-semibold">{{ t('about.stack.tailwind.title') }}</div>
+              <div class="text-sm text-base-content/70">{{ t('about.stack.tailwind.desc') }}</div>
             </div>
             <div class="text-center">
               <div class="text-3xl mb-2">🌍</div>
-              <div class="font-semibold">Vue I18n</div>
-              <div class="text-sm text-base-content/70">다국어 지원</div>
+              <div class="font-semibold">{{ t('about.stack.i18n.title') }}</div>
+              <div class="text-sm text-base-content/70">{{ t('about.stack.i18n.desc') }}</div>
             </div>
             <div class="text-center">
               <div class="text-3xl mb-2">🔧</div>
-              <div class="font-semibold">MSW</div>
-              <div class="text-sm text-base-content/70">API 모킹</div>
+              <div class="font-semibold">{{ t('about.stack.msw.title') }}</div>
+              <div class="text-sm text-base-content/70">{{ t('about.stack.msw.desc') }}</div>
             </div>
           </div>
         </div>
@@ -293,9 +314,9 @@
     <!-- 푸터 -->
     <footer class="footer footer-center p-4 bg-base-300 text-base-content">
       <div>
-        <p>🚀 Vue 3 Enterprise Boilerplate - 모든 기능 테스트 완료!</p>
+        <p>🚀 {{ t('footer.mainText') }}</p>
         <p class="text-sm">
-          Storybook:
+          {{ t('footer.storybook') }}:
           <a href="http://localhost:6006" target="_blank" class="link link-primary"
             >localhost:6006</a
           >
@@ -340,7 +361,7 @@ const testButtonLoading = async () => {
   buttonLoading.value = true
   setTimeout(() => {
     buttonLoading.value = false
-    showAlert('Button loading test completed!')
+    showAlert(t('test.components.baseButton.loadingComplete'))
   }, 2000)
 }
 
@@ -361,14 +382,14 @@ const fetchUsers = async () => {
 
     const data = await response.json()
     users.value = data
-    apiSuccess.value = `✅ ${data.length}명의 사용자 데이터를 불러왔습니다!`
+    apiSuccess.value = t('test.api.messages.fetchSuccess', { count: data.length })
 
     // 성공 메시지 3초 후 자동 숨김
     setTimeout(() => {
       apiSuccess.value = ''
     }, 3000)
   } catch (err) {
-    apiError.value = '❌ 사용자 목록을 불러오는데 실패했습니다.'
+    apiError.value = t('test.api.messages.fetchError')
     console.error(err)
   } finally {
     apiLoading.value = false
@@ -397,12 +418,12 @@ const createUser = async () => {
     if (!response.ok) throw new Error('사용자 생성 실패')
 
     const newUser = await response.json()
-    apiSuccess.value = `✅ 새 사용자 "${newUser.name}"을 생성했습니다!`
+    apiSuccess.value = t('test.api.messages.createSuccess', { name: newUser.name })
 
     // 목록 새로고침
     fetchUsers()
   } catch (err) {
-    apiError.value = '❌ 사용자 생성에 실패했습니다.'
+    apiError.value = t('test.api.messages.createError')
     console.error(err)
   } finally {
     apiLoading.value = false
@@ -411,16 +432,20 @@ const createUser = async () => {
 
 const clearUsers = () => {
   users.value = []
-  apiSuccess.value = '🗑️ 사용자 목록을 초기화했습니다.'
+  apiSuccess.value = t('test.api.messages.clearSuccess')
   setTimeout(() => {
     apiSuccess.value = ''
   }, 2000)
 }
 
 const showUserDetail = (user: any) => {
-  alert(
-    `👤 사용자 상세정보\n\n이름: ${user.name}\n이메일: ${user.email}\n역할: ${user.role}\n가입일: ${user.createdAt}`,
-  )
+  const userDetail = t('test.api.userDetail', {
+    name: user.name,
+    email: user.email,
+    role: t(`test.api.roles.${user.role}`),
+    createdAt: user.createdAt,
+  })
+  alert(userDetail)
 }
 
 // 컴포넌트 마운트 시 초기 데이터 로드

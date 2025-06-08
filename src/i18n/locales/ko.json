@@ -1,43 +1,137 @@
 {
+  "header": {
+    "title": "Vue3 Demo"
+  },
+
+  "dashboard": {
+    "title": "기능 상태 대시보드",
+    "stats": {
+      "styling": {
+        "title": "Tailwind + DaisyUI",
+        "desc": "스타일링 작동중"
+      },
+      "i18n": {
+        "title": "Vue I18n"
+      },
+      "api": {
+        "title": "MSW API",
+        "desc": "사용자 데이터"
+      },
+      "storybook": {
+        "title": "Storybook",
+        "status": "ON",
+        "desc": "컴포넌트 문서화"
+      }
+    }
+  },
+
+  "test": {
+    "components": {
+      "title": "컴포넌트 테스트",
+      "description": "DaisyUI 컴포넌트들과 우리가 만든 BaseButton 테스트",
+      "baseButton": {
+        "title": "BaseButton 컴포넌트",
+        "variants": {
+          "primary": "Primary",
+          "secondary": "Secondary",
+          "accent": "Accent",
+          "ghost": "Ghost"
+        },
+        "sizes": {
+          "xs": "아주 작게",
+          "sm": "작게",
+          "md": "보통",
+          "lg": "크게"
+        },
+        "states": {
+          "loading": "로딩중...",
+          "testLoading": "로딩 테스트",
+          "disabled": "비활성화"
+        },
+        "loadingComplete": "버튼 로딩 테스트 완료!"
+      },
+      "daisyui": {
+        "title": "DaisyUI 네이티브 컴포넌트",
+        "alert": "정보 알림 - DaisyUI 컴포넌트",
+        "inputPlaceholder": "여기에 입력하세요...",
+        "inputValue": "입력한 값"
+      }
+    },
+
+    "api": {
+      "title": "MSW API 테스트",
+      "description": "Mock Service Worker로 API 요청 테스트",
+      "fetchUsers": "사용자 목록 가져오기",
+      "createUser": "사용자 생성",
+      "clearUsers": "목록 초기화",
+      "userList": "사용자 목록",
+      "userCount": "명",
+      "viewDetail": "상세보기",
+      "roles": {
+        "admin": "관리자",
+        "user": "사용자"
+      },
+      "messages": {
+        "fetchSuccess": "✅ {count}명의 사용자 데이터를 불러왔습니다!",
+        "fetchError": "❌ 사용자 목록을 불러오는데 실패했습니다.",
+        "createSuccess": "✅ 새 사용자 \"{name}\"을 생성했습니다!",
+        "createError": "❌ 사용자 생성에 실패했습니다.",
+        "clearSuccess": "🗑️ 사용자 목록을 초기화했습니다."
+      },
+      "userDetail": "👤 사용자 상세정보\\n\\n이름: {name}\\n이메일: {email}\\n역할: {role}\\n가입일: {createdAt}"
+    },
+
+    "theme": {
+      "title": "테마 & 다국어 테스트",
+      "description": "테마 변경과 다국어 기능 테스트",
+      "themeChange": "테마 변경",
+      "currentTheme": "현재 테마",
+      "themes": {
+        "light": "라이트",
+        "dark": "다크"
+      },
+      "toDark": "🌙 다크 모드로",
+      "toLight": "☀️ 라이트 모드로"
+    },
+
+    "i18n": {
+      "title": "다국어 기능",
+      "currentLang": "현재 언어",
+      "welcomeMessage": "안녕하세요! Vue I18n이 정상 작동합니다."
+    }
+  },
+
+  "about": {
+    "techStack": "기술 스택",
+    "stack": {
+      "vue": {
+        "title": "Vue 3",
+        "desc": "Composition API"
+      },
+      "tailwind": {
+        "title": "Tailwind CSS",
+        "desc": "+ DaisyUI"
+      },
+      "i18n": {
+        "title": "Vue I18n",
+        "desc": "다국어 지원"
+      },
+      "msw": {
+        "title": "MSW",
+        "desc": "API 모킹"
+      }
+    }
+  },
+
+  "footer": {
+    "mainText": "Vue 3 Enterprise Boilerplate - 모든 기능 테스트 완료!",
+    "storybook": "Storybook"
+  },
+
   "common": {
     "language": {
       "korean": "한국어",
       "english": "English"
-    },
-    "navigation": {
-      "home": "홈",
-      "about": "소개"
-    }
-  },
-  "home": {
-    "title": "홈페이지",
-    "welcome": "Vue 3 프로젝트에 오신 것을 환영합니다!"
-  },
-  "about": {
-    "title": "소개",
-    "content": "이것은 Vue 3 + DaisyUI 프로젝트입니다.",
-    "techStack": "기술 스택"
-  },
-  "dashboard": {
-    "title": "기능 대시보드"
-  },
-  "test": {
-    "components": {
-      "title": "컴포넌트 테스트"
-    },
-    "api": {
-      "title": "MSW API 테스트",
-      "fetchUsers": "사용자 목록 가져오기",
-      "createUser": "새 사용자 생성",
-      "clearUsers": "목록 초기화",
-      "userList": "사용자 목록"
-    },
-    "theme": {
-      "title": "테마 & 다국어 테스트"
-    },
-    "i18n": {
-      "currentLang": "현재 언어",
-      "welcomeMessage": "다국어 기능이 정상 작동하고 있습니다!"
     }
   }
 }
