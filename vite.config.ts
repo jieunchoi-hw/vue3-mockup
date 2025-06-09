@@ -12,5 +12,13 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    rollupOptions: {},
+  },
+  // MSW 서비스워커를 static 파일로 복사
+  publicDir: 'public',
+
+  server: {
+    // MSW 서비스워커에 대한 CORS 설정
+    cors: true,
   },
 })
