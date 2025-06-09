@@ -14,11 +14,13 @@ export async function enableMocking(): Promise<void> {
   ) {
     // Service Worker가 등록되어 있는지 확인
     if ('serviceWorker' in navigator) {
-      // worker.start()를 호출하고 결과를 기다린 후 void 반환
+      const isGitHubPages = window.location.hostname.includes('github.io')
+      const basePath = isGitHubPages ? '/vue3-mockup' : ''
+      const serviceWorkerUrl = `${basePath}/mockServiceWorker.js`
       await worker.start({
         onUnhandledRequest: 'bypass', // 처리되지 않은 요청에 대해 경고만 표시
         serviceWorker: {
-          url: '/mockServiceWorker.js', // GitHub Pages에서의 정확한 경로
+          url: serviceWorkerUrl, // GitHub Pages에서의 정확한 경로
         },
       })
       return // 명시적으로 void 반환

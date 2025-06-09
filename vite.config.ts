@@ -12,7 +12,10 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    rollupOptions: {},
+    copyPublicDir: true,
+    rollupOptions: {
+      external: [],
+    },
   },
   // MSW 서비스워커를 static 파일로 복사
   publicDir: 'public',
