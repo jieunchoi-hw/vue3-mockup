@@ -16,7 +16,7 @@ export async function enableMocking(): Promise<void> {
     if ('serviceWorker' in navigator) {
       // worker.start()를 호출하고 결과를 기다린 후 void 반환
       await worker.start({
-        onUnhandledRequest: 'warn', // 처리되지 않은 요청에 대해 경고만 표시
+        onUnhandledRequest: 'bypass', // 처리되지 않은 요청에 대해 경고만 표시
         serviceWorker: {
           url: '/mockServiceWorker.js', // GitHub Pages에서의 정확한 경로
         },
