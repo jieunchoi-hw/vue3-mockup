@@ -3,7 +3,10 @@
     <!-- 헤더 네비게이션 -->
     <header class="navbar bg-base-200 shadow-lg">
       <div class="navbar-start">
-        <h1 class="text-xl font-bold">🚀 {{ t('header.title') }}</h1>
+        <h1 class="text-xl font-bold flex items-center gap-2">
+          <img :src="oasisLogo" alt="Oasis Logo" class="w-6 h-6" />
+          {{ t('header.title') }}
+        </h1>
       </div>
 
       <div class="navbar-end space-x-2">
@@ -176,7 +179,7 @@
               🗑️ {{ t('test.api.clearUsers') }}
             </BaseButton>
 
-            <BaseButton variant="warning" @click="resetData">
+            <BaseButton variant="primary" @click="resetData">
               🔄 {{ t('test.api.resetData') }}
             </BaseButton>
           </div>
@@ -488,7 +491,7 @@
             <BaseButton variant="primary" @click="editUser(selectedUser)">
               {{ t('test.api.userDetailModal.edit') }}
             </BaseButton>
-            <BaseButton variant="error" @click="deleteUser(selectedUser.id)" class="btn-outline">
+            <BaseButton variant="primary" @click="deleteUser(selectedUser.id)" class="btn-outline">
               {{ t('test.api.userDetailModal.delete') }}
             </BaseButton>
           </div>
@@ -519,6 +522,7 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BaseButton from './components/BaseButton.vue'
+import oasisLogo from '@/assets/oasis_logo.png'
 
 // i18n 설정
 const { t, locale } = useI18n()

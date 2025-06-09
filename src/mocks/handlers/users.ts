@@ -6,7 +6,6 @@ export const userHandlers = [
   // 사용자 목록 가져오기
   http.get('/api/users', (): Response => {
     const users = userDB.getAllUsers()
-    console.log('📋 사용자 목록 조회:', users.length + '명')
 
     // 약간의 지연 시뮬레이션 (실제 API처럼)
     return new Promise((resolve) => {
@@ -44,8 +43,6 @@ export const userHandlers = [
     if (!user) {
       return HttpResponse.json({ error: '사용자를 찾을 수 없습니다.' }, { status: 404 })
     }
-
-    console.log('👤 사용자 조회:', user)
     return HttpResponse.json(user)
   }),
 

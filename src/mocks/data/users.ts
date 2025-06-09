@@ -55,13 +55,11 @@ class UserDatabase {
     if (savedUsers && savedUsers.length > 0) {
       this.users = savedUsers
       this.nextId = Math.max(...savedUsers.map((u) => u.id)) + 1
-      console.log('📦 사용자 데이터를 localStorage에서 복원했습니다:', savedUsers.length + '명')
     } else {
       // 초기 데이터 사용
       this.users = [...initialUsers]
       this.nextId = Math.max(...this.users.map((u) => u.id)) + 1
       this.saveToStorage()
-      console.log('🆕 초기 사용자 데이터를 로드했습니다:', this.users.length + '명')
     }
   }
 
@@ -103,8 +101,6 @@ class UserDatabase {
 
     this.users.push(newUser)
     this.saveToStorage()
-
-    console.log('✅ 새 사용자 생성됨:', newUser)
     return newUser
   }
 
@@ -118,8 +114,6 @@ class UserDatabase {
 
     this.users[userIndex] = { ...this.users[userIndex], ...updates }
     this.saveToStorage()
-
-    console.log('🔄 사용자 업데이트됨:', this.users[userIndex])
     return this.users[userIndex]
   }
 
@@ -134,7 +128,6 @@ class UserDatabase {
     const deletedUser = this.users.splice(userIndex, 1)[0]
     this.saveToStorage()
 
-    console.log('🗑️ 사용자 삭제됨:', deletedUser)
     return true
   }
 
@@ -143,7 +136,6 @@ class UserDatabase {
     this.users = []
     this.nextId = 1
     this.saveToStorage()
-    console.log('🗑️ 모든 사용자 데이터가 삭제되었습니다')
   }
 
   // 초기 데이터로 리셋
@@ -151,7 +143,6 @@ class UserDatabase {
     this.users = [...initialUsers]
     this.nextId = Math.max(...this.users.map((u) => u.id)) + 1
     this.saveToStorage()
-    console.log('🔄 사용자 데이터를 초기 상태로 리셋했습니다')
   }
 
   // 이메일 중복 체크
