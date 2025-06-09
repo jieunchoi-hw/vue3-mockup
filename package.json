@@ -14,8 +14,9 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "predeploy": "npm run build",
+    "build-storybook": "storybook build --output-dir storybook-static",
+    "build-storybook:demo": "storybook build --output-dir storybook-static",
+    "predeploy": "npm run build:demo && npm run build-storybook",
     "deploy": "gh-pages -d dist",
     "init:msw": "msw init public/ --save"
   },

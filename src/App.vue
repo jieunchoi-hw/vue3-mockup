@@ -315,12 +315,15 @@
     <footer class="footer footer-center p-4 bg-base-300 text-base-content">
       <div>
         <p>🚀 {{ t('footer.mainText') }}</p>
-        <p class="text-sm">
-          {{ t('footer.storybook') }}:
-          <a href="http://localhost:6006" target="_blank" class="link link-primary"
-            >localhost:6006</a
-          >
-        </p>
+        <div class="flex gap-4 text-sm">
+          <a href="/vue3-mockup/storybook/" target="_blank" class="link link-primary">
+            📚 Storybook
+          </a>
+          <span>•</span>
+          <a href="http://localhost:6006" target="_blank" class="link link-primary">
+            🛠️ Local Storybook
+          </a>
+        </div>
       </div>
     </footer>
   </div>

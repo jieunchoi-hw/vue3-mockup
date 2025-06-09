@@ -1,4 +1,4 @@
-name: 🚀 Deploy to GitHub Pages with MSW
+name: 🚀 Deploy to GitHub Pages with MSW + Storybook
 
 on:
   push:
@@ -45,28 +45,65 @@ jobs:
           # 데모용 빌드 명령어 사용
           npm run build:demo
 
+      - name: 📚 Build Storybook
+        run: |
+          echo "Building Storybook..."
+          npm run build-storybook
+          echo "Storybook build completed"
+
+          # Storybook 빌드 결과 확인
+          if [ -d "storybook-static" ]; then
+            echo "✅ Storybook build successful"
+            ls -la storybook-static/ | head -10
+          else
+            echo "❌ Storybook build failed"
+            exit 1
+          fi
+
+      - name: 🔀 Combine builds
+        run: |
+          echo "Combining main app and Storybook..."
+
+          # Storybook을 dist/storybook/에 복사
+          mkdir -p dist/storybook
+          cp -r storybook-static/* dist/storybook/
+
+          echo "Combined build structure:"
+          echo "Main app files:"
+          ls -la dist/ | head -5
+          echo "Storybook files:"
+          ls -la dist/storybook/ | head -5
+
       - name: 🔍 Verify build output
         run: |
-          echo "Build output contents:"
-          ls -la dist/
-          echo "Checking for MSW service worker:"
-          if [ -f "dist/mockServiceWorker.js" ]; then
-            echo "✅ MSW service worker found in dist/"
-            head -5 dist/mockServiceWorker.js
+          echo "=== Build Verification ==="
+
+          # 메인 앱 확인
+          if [ -f "dist/index.html" ]; then
+            echo "✅ Main app: index.html found"
           else
-            echo "❌ MSW service worker not found in dist/"
+            echo "❌ Main app: index.html missing"
           fi
 
-          echo "Checking for main JS files:"
-          find dist -name "*.js" -type f | head -10
-
-      - name: 📚 Build Storybook (optional)
-        run: |
-          if npm run build-storybook; then
-            mkdir -p dist/storybook
-            cp -r storybook-static/* dist/storybook/ 2>/dev/null || echo "Storybook build failed, skipping"
+          # MSW 서비스워커 확인
+          if [ -f "dist/mockServiceWorker.js" ]; then
+            echo "✅ MSW: Service worker found"
+            head -3 dist/mockServiceWorker.js
+          else
+            echo "❌ MSW: Service worker missing"
           fi
-        continue-on-error: true
+
+          # Storybook 확인
+          if [ -f "dist/storybook/index.html" ]; then
+            echo "✅ Storybook: index.html found"
+          else
+            echo "❌ Storybook: index.html missing"
+          fi
+
+          echo "Total files in dist: $(find dist -type f | wc -l)"
+          echo "Deployment URLs will be:"
+          echo "  Main app: https://jieunchoi-hw.github.io/vue3-mockup/"
+          echo "  Storybook: https://jieunchoi-hw.github.io/vue3-mockup/storybook/"
 
       - name: 📄 Setup Pages
         uses: actions/configure-pages@v4
