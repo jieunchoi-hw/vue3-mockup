@@ -78,7 +78,22 @@
         "createError": "❌ Failed to create user.",
         "clearSuccess": "🗑️ User list has been cleared."
       },
-      "userDetail": "👤 User Details\\n\\nName: {name}\\nEmail: {email}\\nRole: {role}\\nJoined: {createdAt}"
+      "userDetail": "👤 User Details\\n\\nName: {name}\\nEmail: {email}\\nRole: {role}\\nJoined: {createdAt}",
+      "hideForm": "Hide Form",
+      "createUserForm": {
+        "title": "Create New User",
+        "name": "Name",
+        "namePlaceholder": "Enter user name",
+        "nameRequired": "Name is required",
+        "email": "Email",
+        "emailPlaceholder": "Enter email address",
+        "emailRequired": "Email is required",
+        "role": "Role",
+        "reset": "Reset",
+        "create": "Create",
+        "creating": "Creating...",
+        "validationError": "Please fill in all required fields"
+      }
     },
 
     "theme": {

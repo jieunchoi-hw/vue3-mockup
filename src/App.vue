@@ -168,13 +168,92 @@
               👥 {{ t('test.api.fetchUsers') }}
             </BaseButton>
 
-            <BaseButton variant="secondary" :loading="apiLoading" @click="createUser">
-              ➕ {{ t('test.api.createUser') }}
+            <BaseButton variant="secondary" @click="toggleUserForm">
+              ➕ {{ showUserForm ? t('test.api.hideForm') : t('test.api.createUser') }}
             </BaseButton>
 
             <BaseButton variant="accent" @click="clearUsers">
               🗑️ {{ t('test.api.clearUsers') }}
             </BaseButton>
+          </div>
+
+          <!-- 사용자 생성 폼 -->
+          <div v-if="showUserForm" class="mt-6 p-6 bg-base-100 rounded-lg border border-base-300">
+            <h3 class="font-semibold text-lg mb-4">👤 {{ t('test.api.createUserForm.title') }}</h3>
+
+            <form @submit.prevent="createUser" class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- 이름 입력 -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">{{ t('test.api.createUserForm.name') }}</span>
+                  </label>
+                  <input
+                    type="text"
+                    v-model="newUser.name"
+                    :placeholder="t('test.api.createUserForm.namePlaceholder')"
+                    class="input input-bordered w-full"
+                    :class="{ 'input-error': !newUser.name && formTouched }"
+                    required
+                  />
+                  <label v-if="!newUser.name && formTouched" class="label">
+                    <span class="label-text-alt text-error">{{
+                      t('test.api.createUserForm.nameRequired')
+                    }}</span>
+                  </label>
+                </div>
+
+                <!-- 이메일 입력 -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">{{ t('test.api.createUserForm.email') }}</span>
+                  </label>
+                  <input
+                    type="email"
+                    v-model="newUser.email"
+                    :placeholder="t('test.api.createUserForm.emailPlaceholder')"
+                    class="input input-bordered w-full"
+                    :class="{ 'input-error': !newUser.email && formTouched }"
+                    required
+                  />
+                  <label v-if="!newUser.email && formTouched" class="label">
+                    <span class="label-text-alt text-error">{{
+                      t('test.api.createUserForm.emailRequired')
+                    }}</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- 역할 선택 -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">{{ t('test.api.createUserForm.role') }}</span>
+                </label>
+                <select v-model="newUser.role" class="select select-bordered w-full">
+                  <option value="user">{{ t('test.api.roles.user') }}</option>
+                  <option value="admin">{{ t('test.api.roles.admin') }}</option>
+                </select>
+              </div>
+
+              <!-- 버튼들 -->
+              <div class="flex gap-2 justify-end">
+                <BaseButton type="button" variant="ghost" @click="resetForm">
+                  {{ t('test.api.createUserForm.reset') }}
+                </BaseButton>
+                <BaseButton
+                  type="submit"
+                  variant="primary"
+                  :loading="apiLoading"
+                  :disabled="!newUser.name || !newUser.email"
+                >
+                  {{
+                    apiLoading
+                      ? t('test.api.createUserForm.creating')
+                      : t('test.api.createUserForm.create')
+                  }}
+                </BaseButton>
+              </div>
+            </form>
           </div>
 
           <!-- API 상태 -->
@@ -348,6 +427,15 @@ const apiSuccess = ref('')
 const buttonLoading = ref(false)
 const testInput = ref('Hello Vue 3!')
 
+// 사용자 폼 관련 상태
+const showUserForm = ref(false)
+const formTouched = ref(false)
+const newUser = ref({
+  name: '',
+  email: '',
+  role: 'user' as 'user' | 'admin',
+})
+
 // 테마 토글
 const toggleTheme = () => {
   currentTheme.value = currentTheme.value === 'light' ? 'dark' : 'light'
@@ -357,6 +445,24 @@ const toggleTheme = () => {
 // 언어 변경
 const changeLanguage = (lang: string) => {
   locale.value = lang
+}
+
+// 사용자 폼 토글
+const toggleUserForm = () => {
+  showUserForm.value = !showUserForm.value
+  if (!showUserForm.value) {
+    resetForm()
+  }
+}
+
+// 폼 리셋
+const resetForm = () => {
+  newUser.value = {
+    name: '',
+    email: '',
+    role: 'user',
+  }
+  formTouched.value = false
 }
 
 // 버튼 로딩 테스트
@@ -400,28 +506,36 @@ const fetchUsers = async () => {
 }
 
 const createUser = async () => {
+  formTouched.value = true
+
+  // 폼 유효성 검사
+  if (!newUser.value.name || !newUser.value.email) {
+    apiError.value = t('test.api.createUserForm.validationError')
+    setTimeout(() => {
+      apiError.value = ''
+    }, 3000)
+    return
+  }
+
   apiLoading.value = true
   apiError.value = ''
   apiSuccess.value = ''
 
   try {
-    const randomNames = ['김민수', '이영희', 'John Doe', 'Jane Smith', '박철수']
-    const randomName = randomNames[Math.floor(Math.random() * randomNames.length)]
-
     const response = await fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: randomName,
-        email: `${randomName.toLowerCase().replace(' ', '')}@example.com`,
-        role: Math.random() > 0.5 ? 'user' : 'admin',
-      }),
+      body: JSON.stringify(newUser.value),
     })
 
     if (!response.ok) throw new Error('사용자 생성 실패')
 
-    const newUser = await response.json()
-    apiSuccess.value = t('test.api.messages.createSuccess', { name: newUser.name })
+    const createdUser = await response.json()
+    apiSuccess.value = t('test.api.messages.createSuccess', { name: createdUser.name })
+
+    // 폼 리셋 및 숨기기
+    resetForm()
+    showUserForm.value = false
 
     // 목록 새로고침
     fetchUsers()
