@@ -175,6 +175,10 @@
             <BaseButton variant="accent" @click="clearUsers">
               🗑️ {{ t('test.api.clearUsers') }}
             </BaseButton>
+
+            <BaseButton variant="warning" @click="resetData">
+              🔄 {{ t('test.api.resetData') }}
+            </BaseButton>
           </div>
 
           <!-- 사용자 생성 폼 -->
@@ -390,6 +394,109 @@
       </section>
     </main>
 
+    <!-- 사용자 상세정보 모달 -->
+    <div v-if="showUserModal" class="modal modal-open">
+      <div class="modal-box relative">
+        <!-- 모달 헤더 -->
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-lg font-bold">👤 {{ t('test.api.userDetailModal.title') }}</h3>
+          <button @click="showUserModal = false" class="btn btn-sm btn-circle btn-ghost">✕</button>
+        </div>
+
+        <!-- 사용자 정보 -->
+        <div v-if="selectedUser" class="space-y-4">
+          <!-- 프로필 섹션 -->
+          <div class="flex items-center space-x-4 p-4 bg-base-200 rounded-lg">
+            <div class="flex">
+              <h4 class="text-xl font-semibold">{{ selectedUser.name }}</h4>
+              <span
+                class="ml-2 badge"
+                :class="{
+                  'badge-error': selectedUser.role === 'admin',
+                  'badge-primary': selectedUser.role === 'user',
+                }"
+              >
+                {{ t(`test.api.roles.${selectedUser.role}`) }}
+              </span>
+            </div>
+          </div>
+
+          <!-- 상세 정보 -->
+          <div class="grid grid-cols-1 gap-4">
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-semibold"
+                  >📧 {{ t('test.api.userDetailModal.email') }}</span
+                >
+              </label>
+              <input
+                type="text"
+                :value="selectedUser.email"
+                class="ml-2 input input-bordered bg-base-200"
+                readonly
+              />
+            </div>
+
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-semibold"
+                  >🔖 {{ t('test.api.userDetailModal.role') }}</span
+                >
+              </label>
+              <input
+                type="text"
+                :value="t(`test.api.roles.${selectedUser.role}`)"
+                class="ml-2 input input-bordered bg-base-200"
+                readonly
+              />
+            </div>
+
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-semibold"
+                  >📅 {{ t('test.api.userDetailModal.createdAt') }}</span
+                >
+              </label>
+              <input
+                type="text"
+                :value="selectedUser.createdAt"
+                class="ml-2 input input-bordered bg-base-200"
+                readonly
+              />
+            </div>
+
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-semibold"
+                  >🆔 {{ t('test.api.userDetailModal.id') }}</span
+                >
+              </label>
+              <input
+                type="text"
+                :value="selectedUser.id"
+                class="ml-2 input input-bordered bg-base-200"
+                readonly
+              />
+            </div>
+          </div>
+
+          <!-- 액션 버튼들 -->
+          <div class="flex gap-2 justify-end pt-4">
+            <BaseButton variant="ghost" @click="showUserModal = false">
+              {{ t('test.api.userDetailModal.close') }}
+            </BaseButton>
+            <BaseButton variant="primary" @click="editUser(selectedUser)">
+              {{ t('test.api.userDetailModal.edit') }}
+            </BaseButton>
+            <BaseButton variant="error" @click="deleteUser(selectedUser.id)" class="btn-outline">
+              {{ t('test.api.userDetailModal.delete') }}
+            </BaseButton>
+          </div>
+        </div>
+      </div>
+      <div class="modal-backdrop" @click="showUserModal = false"></div>
+    </div>
+
     <!-- 푸터 -->
     <footer class="footer footer-center p-4 bg-base-300 text-base-content">
       <div>
@@ -435,6 +542,10 @@ const newUser = ref({
   email: '',
   role: 'user' as 'user' | 'admin',
 })
+
+// 사용자 상세 모달 관련 상태
+const showUserModal = ref(false)
+const selectedUser = ref<any>(null)
 
 // 테마 토글
 const toggleTheme = () => {
@@ -547,22 +658,102 @@ const createUser = async () => {
   }
 }
 
-const clearUsers = () => {
-  users.value = []
-  apiSuccess.value = t('test.api.messages.clearSuccess')
+const clearUsers = async () => {
+  try {
+    const response = await fetch('/api/users', {
+      method: 'DELETE',
+    })
+
+    if (response.ok) {
+      users.value = []
+      apiSuccess.value = t('test.api.messages.clearSuccess')
+    } else {
+      throw new Error('데이터 삭제 실패')
+    }
+  } catch (error) {
+    apiError.value = t('test.api.messages.clearError')
+    console.error(error)
+  }
+
   setTimeout(() => {
     apiSuccess.value = ''
-  }, 2000)
+    apiError.value = ''
+  }, 3000)
+}
+
+const resetData = async () => {
+  apiLoading.value = true
+  apiError.value = ''
+  apiSuccess.value = ''
+
+  try {
+    const response = await fetch('/api/users/reset', {
+      method: 'POST',
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      users.value = data.users
+      apiSuccess.value = t('test.api.messages.resetSuccess')
+    } else {
+      throw new Error('데이터 리셋 실패')
+    }
+  } catch (error) {
+    apiError.value = t('test.api.messages.resetError')
+    console.error(error)
+  } finally {
+    apiLoading.value = false
+  }
+
+  setTimeout(() => {
+    apiSuccess.value = ''
+    apiError.value = ''
+  }, 3000)
 }
 
 const showUserDetail = (user: any) => {
-  const userDetail = t('test.api.userDetail', {
+  selectedUser.value = user
+  showUserModal.value = true
+}
+
+const editUser = (user: any) => {
+  // 편집 기능
+  newUser.value = {
     name: user.name,
     email: user.email,
-    role: t(`test.api.roles.${user.role}`),
-    createdAt: user.createdAt,
-  })
-  alert(userDetail)
+    role: user.role,
+  }
+  showUserModal.value = false
+  showUserForm.value = true
+  formTouched.value = false
+}
+
+const deleteUser = async (userId: number) => {
+  if (!confirm(t('test.api.userDetailModal.deleteConfirm'))) {
+    return
+  }
+
+  try {
+    const response = await fetch(`/api/users/${userId}`, {
+      method: 'DELETE',
+    })
+
+    if (response.ok) {
+      apiSuccess.value = t('test.api.messages.deleteSuccess')
+      showUserModal.value = false
+      fetchUsers()
+    } else {
+      throw new Error('사용자 삭제 실패')
+    }
+  } catch (error) {
+    apiError.value = t('test.api.messages.deleteError')
+    console.error(error)
+  }
+
+  setTimeout(() => {
+    apiSuccess.value = ''
+    apiError.value = ''
+  }, 3000)
 }
 
 // 컴포넌트 마운트 시 초기 데이터 로드

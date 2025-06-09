@@ -64,6 +64,8 @@
       "fetchUsers": "사용자 목록 가져오기",
       "createUser": "사용자 생성",
       "clearUsers": "목록 초기화",
+      "resetData": "데이터 리셋",
+      "hideForm": "폼 숨기기",
       "userList": "사용자 목록",
       "userCount": "명",
       "viewDetail": "상세보기",
@@ -71,15 +73,6 @@
         "admin": "관리자",
         "user": "사용자"
       },
-      "messages": {
-        "fetchSuccess": "✅ {count}명의 사용자 데이터를 불러왔습니다!",
-        "fetchError": "❌ 사용자 목록을 불러오는데 실패했습니다.",
-        "createSuccess": "✅ 새 사용자 \"{name}\"을 생성했습니다!",
-        "createError": "❌ 사용자 생성에 실패했습니다.",
-        "clearSuccess": "🗑️ 사용자 목록을 초기화했습니다."
-      },
-      "userDetail": "👤 사용자 상세정보\\n\\n이름: {name}\\n이메일: {email}\\n역할: {role}\\n가입일: {createdAt}",
-      "hideForm": "폼 숨기기",
       "createUserForm": {
         "title": "새 사용자 생성",
         "name": "이름",
@@ -93,6 +86,29 @@
         "create": "생성하기",
         "creating": "생성 중...",
         "validationError": "모든 필수 항목을 입력해주세요"
+      },
+      "userDetailModal": {
+        "title": "사용자 상세정보",
+        "email": "이메일",
+        "role": "역할",
+        "createdAt": "가입일",
+        "id": "사용자 ID",
+        "close": "닫기",
+        "edit": "편집",
+        "delete": "삭제",
+        "deleteConfirm": "정말로 이 사용자를 삭제하시겠습니까?"
+      },
+      "messages": {
+        "fetchSuccess": "✅ {count}명의 사용자 데이터를 불러왔습니다!",
+        "fetchError": "❌ 사용자 목록을 불러오는데 실패했습니다.",
+        "createSuccess": "✅ 새 사용자 \"{name}\"을 생성했습니다!",
+        "createError": "❌ 사용자 생성에 실패했습니다.",
+        "clearSuccess": "🗑️ 사용자 목록을 초기화했습니다.",
+        "clearError": "❌ 데이터 삭제에 실패했습니다.",
+        "resetSuccess": "✅ 데이터를 초기 상태로 리셋했습니다!",
+        "resetError": "❌ 데이터 리셋에 실패했습니다.",
+        "deleteSuccess": "✅ 사용자가 삭제되었습니다!",
+        "deleteError": "❌ 사용자 삭제에 실패했습니다."
       }
     },
 
