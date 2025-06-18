@@ -41,7 +41,7 @@
       <section class="card bg-base-200 shadow-xl">
         <div class="card-body">
           <h2 class="card-title text-2xl">📊 {{ t('dashboard.title') }}</h2>
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4">
             <div class="stat bg-base-100 rounded-lg">
               <div class="stat-figure text-primary">🎨</div>
               <div class="stat-title">{{ t('dashboard.stats.styling.title') }}</div>
@@ -71,6 +71,97 @@
               <div class="stat-value text-info">{{ t('dashboard.stats.storybook.status') }}</div>
               <div class="stat-desc">{{ t('dashboard.stats.storybook.desc') }}</div>
             </div>
+
+            <!-- Vitest 추가 -->
+            <div class="stat bg-base-100 rounded-lg">
+              <div class="stat-figure text-success">🧪</div>
+              <div class="stat-title">Unit Testing</div>
+              <div class="stat-value text-success">Vitest</div>
+              <div class="stat-desc">Fast & Modern Testing</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vitest 테스트 섹션 추가 -->
+      <section class="card bg-base-200 shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title">🧪 Unit Testing with Vitest</h2>
+          <p class="text-base-content/70">
+            Fast and modern testing framework powered by Vite. Run tests, check coverage, and ensure
+            code quality.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <!-- 테스트 실행 버튼들 -->
+            <div class="space-y-4">
+              <h3 class="font-semibold">🚀 Test Commands</h3>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <code class="bg-base-300 px-2 py-1 rounded text-sm">npm run test</code>
+                  <span class="text-sm text-base-content/70">Watch mode</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <code class="bg-base-300 px-2 py-1 rounded text-sm">npm run test:run</code>
+                  <span class="text-sm text-base-content/70">Single run</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <code class="bg-base-300 px-2 py-1 rounded text-sm">npm run test:ui</code>
+                  <span class="text-sm text-base-content/70">UI mode</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <code class="bg-base-300 px-2 py-1 rounded text-sm">npm run test:coverage</code>
+                  <span class="text-sm text-base-content/70">Coverage report</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 테스트 현황 -->
+            <div class="space-y-4">
+              <h3 class="font-semibold">📋 Test Status</h3>
+              <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                  <span>BaseButton.test.ts</span>
+                  <div class="badge badge-success">✅ Ready</div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span>counter.test.ts</span>
+                  <div class="badge badge-success">✅ Ready</div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span>API Tests</span>
+                  <div class="badge badge-warning">⚠️ Pending</div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span>Integration Tests</span>
+                  <div class="badge badge-warning">⚠️ Pending</div>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <BaseButton variant="primary" size="sm" @click="showTestInfo">
+                  🔍 View Test Details
+                </BaseButton>
+              </div>
+            </div>
+          </div>
+
+          <!-- 테스트 팁 -->
+          <div class="mt-6 p-4 bg-base-100 rounded-lg border border-base-300">
+            <h4 class="font-semibold mb-2">💡 Testing Tips</h4>
+            <ul class="text-sm space-y-1 text-base-content/70">
+              <li>
+                • Use <code class="bg-base-200 px-1 rounded">describe</code> and
+                <code class="bg-base-200 px-1 rounded">it</code> to organize tests
+              </li>
+              <li>
+                • Test user interactions with
+                <code class="bg-base-200 px-1 rounded">@vue/test-utils</code>
+              </li>
+              <li>• Mock API calls and external dependencies</li>
+              <li>• Aim for good test coverage without over-testing</li>
+              <li>• Keep tests fast and independent</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -371,7 +462,7 @@
       <section class="card bg-gradient-to-r from-primary/10 to-accent/10 shadow-xl">
         <div class="card-body">
           <h2 class="card-title">🛠️ {{ t('about.techStack') }}</h2>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
             <div class="text-center">
               <div class="text-3xl mb-2">⚡</div>
               <div class="font-semibold">{{ t('about.stack.vue.title') }}</div>
@@ -391,6 +482,12 @@
               <div class="text-3xl mb-2">🔧</div>
               <div class="font-semibold">{{ t('about.stack.msw.title') }}</div>
               <div class="text-sm text-base-content/70">{{ t('about.stack.msw.desc') }}</div>
+            </div>
+            <!-- Vitest -->
+            <div class="text-center">
+              <div class="text-3xl mb-2">🧪</div>
+              <div class="font-semibold">Vitest</div>
+              <div class="text-sm text-base-content/70">Unit Testing Framework</div>
             </div>
           </div>
         </div>
@@ -592,6 +689,24 @@ const testButtonLoading = async () => {
 // 알림 표시
 const showAlert = (message: string) => {
   alert(`🎉 ${message}`)
+}
+
+// Vitest 테스트 정보 표시
+const showTestInfo = () => {
+  alert(`🧪 Vitest Testing Framework
+  
+✅ Fast unit testing with HMR
+✅ TypeScript support out of the box
+✅ Vue component testing with @vue/test-utils
+✅ Jest-compatible API
+✅ Coverage reports
+✅ Watch mode for development
+
+Current test files:
+• BaseButton.test.ts - Component testing
+• counter.test.ts - Store testing
+
+Run 'npm run test' to start testing!`)
 }
 
 // API 함수들

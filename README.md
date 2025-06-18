@@ -1,11 +1,9 @@
-# 🚀 Vue 3 Enterprise Boilerplate
-
-![Deploy Status](https://github.com/yourusername/vue3-enterprise-boilerplate/workflows/🚀%20Deploy%20to%20GitHub%20Pages/badge.svg)
+# 🚀 Vue 3 Boilerplate for DWP
 
 ## 🌐 Live Demo
 
-- **메인 앱**: https://yourusername.github.io/vue3-enterprise-boilerplate/
-- **Storybook**: https://yourusername.github.io/vue3-enterprise-boilerplate/storybook/
+- **메인 앱**: https://jieunchoi-hw.github.io/vue3-mockup/
+- **Storybook**: https://jieunchoi-hw.github.io/vue3-mockup/storybook/
 
 ## ✨ Features
 
@@ -16,6 +14,7 @@
 - 🚀 **GitHub Actions** - 자동 빌드 및 배포
 - ⚡ **Vite** - 빠른 개발 환경
 - 🟦 **TypeScript** - 타입 안전성
+- 🧪 **Vitest** - 단위 테스트 프레임워크
 
 ## 🛠️ Development
 
